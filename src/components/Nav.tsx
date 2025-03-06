@@ -1,4 +1,4 @@
-import {Link} from "react-router"
+import {Link, useParams} from "react-router"
 import {styled} from "styled-components"
 
 const StyledLink = styled(Link)`
@@ -53,12 +53,13 @@ const StyledLi = styled.li`
         box-shadow: inset 0.4vw 0.4vw 1.2vw #c5c5c5, inset -0.4vw -0.4vw 1.2vw #ffffff;
     }
     @media screen and (max-width: 900px) {
-        //font-size: calc(2px + 2vw);
         margin: 0 .5%;
     }
 `
 
 export default function Nav() {
+    const url = useParams()["*"];
+    document.title = (url ? url.charAt(0).toUpperCase()+url.substring(1) : "Home") + " | Resume"
     return (
         <StyledNav>
             <StyledUl>

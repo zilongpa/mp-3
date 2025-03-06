@@ -37,9 +37,9 @@ const StyledDiv = styled.div`
     }
 `
 
-const StyledSpan = styled.span<{ isNegative: boolean; }>`
+const StyledSpan = styled.span<{ $isNegative: boolean; }>`
     background-color: white;
-    color: ${props => (props.isNegative ? 'red' : '')};
+    color: ${props => (props.$isNegative ? 'red' : '')};
 `
 
 const StyledH3 = styled.h3`
@@ -79,7 +79,7 @@ export default function Calculator() {
             <button onClick={() => setOutput(power(Number(first), Number(second)))}>Power</button>
             <button onClick={clearAll}>Clear</button>
             <br/>
-            <StyledH3>Result: <StyledSpan isNegative={output != null && output < 0}>{output}</StyledSpan></StyledH3>
+            <StyledH3>Result: <StyledSpan $isNegative={output != null && output < 0}>{output}</StyledSpan></StyledH3>
         </StyledDiv>
     )
 }
