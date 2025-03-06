@@ -10,7 +10,7 @@ const StyledUl = styled.ul`
 export default function Projects() {
     return (
         <>
-            <Title>Experiences</Title>
+            <Title>Projects</Title>
             <Subtitle><a href="https://www.bucssa.org/" target="_blank">BUCSSA Application Portal & Official Website</a></Subtitle>
             <StyledUl>
                 <li>
