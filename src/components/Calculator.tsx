@@ -38,12 +38,12 @@ const StyledDiv = styled.div`
 `
 
 const StyledSpan = styled.span<{ isNegative: boolean; }>`
+    background-color: white;
     color: ${props => (props.isNegative ? 'red' : '')};
 `
 
 const StyledH3 = styled.h3`
-    background-color: white;
-    margin-top: 0.5vh
+    margin-top: 0.5vh;
 `
 
 function power(first: number, second: number): number {
@@ -56,20 +56,28 @@ function power(first: number, second: number): number {
 
 export default function Calculator() {
     const [output, setOutput] = useState<number | null>(null);
-    const [first, setFirst] = useState<number>(0);
-    const [second, setSecond] = useState<number>(0);
+    const [first, setFirst] = useState<string>("");
+    const [second, setSecond] = useState<string>("");
+
+    function clearAll(): void {
+        setOutput(null);
+        setFirst("");
+        setSecond("");
+    }
+
     return (
         <StyledDiv>
-            <label>First Number: <input type="number" onChange={(e) => setFirst(Number(e.target.value))}/></label>
+            <label>First Number: <input type="number" value={first} onChange={(e) => setFirst(e.target.value)}/></label>
             <br/>
-            <label>Second Number: <input type="number" onChange={(e) => setSecond(Number(e.target.value))}/></label>
+            <label>Second Number: <input type="number" value={second}
+                                         onChange={(e) => setSecond(e.target.value)}/></label>
             <br/>
-            <button onClick={() => setOutput(first + second)}>Add</button>
-            <button onClick={() => setOutput(first - second)}>Subtract</button>
-            <button onClick={() => setOutput(first * second)}>Multiply</button>
-            <button onClick={() => setOutput(first / second)}>Divide</button>
-            <button onClick={() => setOutput(power(first, second))}>Power</button>
-            <button onClick={() => setOutput(null)}>Clear</button>
+            <button onClick={() => setOutput(Number(first) + Number(second))}>Add</button>
+            <button onClick={() => setOutput(Number(first) - Number(second))}>Subtract</button>
+            <button onClick={() => setOutput(Number(first) * Number(second))}>Multiply</button>
+            <button onClick={() => setOutput(Number(first) / Number(second))}>Divide</button>
+            <button onClick={() => setOutput(power(Number(first), Number(second)))}>Power</button>
+            <button onClick={clearAll}>Clear</button>
             <br/>
             <StyledH3>Result: <StyledSpan isNegative={output != null && output < 0}>{output}</StyledSpan></StyledH3>
         </StyledDiv>
